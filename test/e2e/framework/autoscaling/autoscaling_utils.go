@@ -721,6 +721,18 @@ func HPABehaviorWithUpscaleStabilizationSeconds(upscaleStabilizationSeconds int3
 	}
 }
 
+func HPABehaviorWithAutoscalingDisabled() *autoscalingv2.HorizontalPodAutoscalerBehavior {
+	disabledPolicy := autoscalingv2.DisabledPolicySelect
+	return &autoscalingv2.HorizontalPodAutoscalerBehavior{
+		ScaleUp: &autoscalingv2.HPAScalingRules{
+			SelectPolicy: &disabledPolicy,
+		},
+		ScaleDown: &autoscalingv2.HPAScalingRules{
+			SelectPolicy: &disabledPolicy,
+		},
+	}
+}
+
 //SidecarStatusType type for sidecar status
 type SidecarStatusType bool
 
